@@ -11,6 +11,7 @@ from turtle_chat_client import Client
 #Finally, from the turtle_chat_widgets module, import two classes: Button and TextInput
 from turtle_chat_widgets import Button, TextInput
 
+
 #####################################################################################
 #####################################################################################
 
@@ -36,12 +37,10 @@ class TextBox (TextInput):
     def write_msg(self):
         self.writer.clear()
         self.writer.write(self.new_msg)
+        
 
-
-
-screen = turtle.Screen()
-screen.setup(550,650)
-screen.bgpic("image.jpg")
+        
+    
 #draw_box
 #write_msg
 #
@@ -239,8 +238,9 @@ if __name__ == '__main__':
                 my_view.msg_received(msg_in)
         turtle.ontimer(check,_WAIT_TIME) #Check recursively
     check()
+    screen.bgpic("wallpaper.jpg")
     turtle.mainloop()
+
+    
 #how do i change the color and width of the textbox
-#image isnt working
-#how do i make turtle immedietely open instead of waiting for it to draw
-#how to resize screen without messing up the code
+#
