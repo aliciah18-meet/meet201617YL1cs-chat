@@ -25,23 +25,25 @@ class TextBox (TextInput):
     def draw_box(self):
         turtle.ht()
         self.writer.penup()
-        self.writer.goto(-200,-100)
+        self.writer.goto(-150,-150)
         self.writer.pendown()
-        self.writer.goto(-200,0)
-        self.writer.goto(200,0)
-        self.writer.goto(200,-100)
-        self.writer.goto(-200,-100)
-        turtle.speed(0)
-        
+        self.writer.goto(150,-150)
+        self.writer.goto(150,0)
+        self.writer.goto(-150,0)
+        self.writer.goto(-150,-150)
+        self.writer.penup()
+        self.writer.goto(-145,-24)
     def write_msg(self):
         self.writer.clear()
-        self.writer.write(self.new_msg)
+        self.writer.write(self.new_msg,font=('Times New Roman',14,'normal'))
 
 
 
-screen = turtle.Screen()
-screen.setup(550,650)
-screen.bgpic("image.jpg")
+#screen = turtle.Screen()
+#screen.setup(550,650)
+#screen.bgpic("image.jpg")
+
+        
 #draw_box
 #write_msg
 #
@@ -69,11 +71,11 @@ screen.bgpic("image.jpg")
 #Make a class called SendButton, which will be a subclass of Button.
 
 class SendButton (Button):
-     def __init__(self,view):
-         super(SendButton, self).__init()
+     def __init__(selfmy_turtle=None,shape=None,pos=(0,0),view=None):
+         super(SendButton, self).__init__(my_turtle=None,shape=None,pos=(0,0))
          self.view=view
 
-     def fun(self):
+     def fun(self,x=None,y=None):
         self.view.send_msg()
          
     
@@ -189,10 +191,11 @@ class View:
         where send_btn is the name of your button instance
 
         Then, it can call turtle.listen()
+        use return 
         '''
-        turtle.onclick(self.send_btn.fun)
-        turtle.onkeypress(enter, self.send_btn.fun)
+        turtle.onkeypress(self.send_btn.fun, 'Return')
         turtle.listen()
+        pass
 
     def msg_received(self,msg):
         '''
@@ -215,6 +218,8 @@ class View:
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
         '''
+
+        
         pass
 
 ##############################################################
@@ -240,7 +245,9 @@ if __name__ == '__main__':
         turtle.ontimer(check,_WAIT_TIME) #Check recursively
     check()
     turtle.mainloop()
+#how to change the place where turtle starts writing what I type
+#how do i make turtle immedietely open instead of waiting for it to draw
 #how do i change the color and width of the textbox
 #image isnt working
-#how do i make turtle immedietely open instead of waiting for it to draw
 #how to resize screen without messing up the code
+
