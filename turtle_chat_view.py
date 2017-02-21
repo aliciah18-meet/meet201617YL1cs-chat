@@ -21,27 +21,38 @@ from turtle_chat_widgets import Button, TextInput
 #Because TextInput is an abstract class, you must implement its abstract
 #methods.  There are two:
 #
+
 class TextBox (TextInput):
+
+    
     def draw_box(self):
         turtle.ht()
         self.writer.penup()
-        self.writer.goto(-150,-150)
+        self.writer.goto(-150,-200)
         self.writer.pendown()
-        self.writer.goto(150,-150)
-        self.writer.goto(150,0)
-        self.writer.goto(-150,0)
-        self.writer.goto(-150,-150)
+        self.writer.goto(150,-200)
+        self.writer.goto(150,-50)
+        self.writer.goto(-150,-50)
+        self.writer.goto(-150
+                         ,-200)
         self.writer.penup()
-        self.writer.goto(-145,-24)
+        self.writer.goto(-145,-74)
+        self.writer.pencolor("white")
+        self.writer.color("white")
     def write_msg(self):
+        
         self.writer.clear()
-        self.writer.write(self.new_msg,font=('Times New Roman',14,'normal'))
+        self.writer.write(self.new_msg,font=('Times New Roman',16,'normal'))
+    
 
 
+#text=TextBox()
 
-#screen = turtle.Screen()
-#screen.setup(550,650)
-#screen.bgpic("image.jpg")
+screen = turtle.Screen()
+#turtle.screensize(577,421)
+turtle.setup( width = 421, height = 577, startx = None, starty = None) 
+image="drake2.png"
+screen.bgpic(image)
 
         
 #draw_box
@@ -71,12 +82,12 @@ class TextBox (TextInput):
 #Make a class called SendButton, which will be a subclass of Button.
 
 class SendButton (Button):
-     def __init__(selfmy_turtle=None,shape=None,pos=(0,0),view=None):
+     def __init__(self,my_turtle=None,shape=None,pos=(0,0),view=None):
          super(SendButton, self).__init__(my_turtle=None,shape=None,pos=(0,0))
          self.view=view
 
      def fun(self,x=None,y=None):
-        self.view.send_msg()
+         self.view.send_msg()
          
     
 #Button is an abstract class with one abstract method: fun.
@@ -122,7 +133,7 @@ class View:
         self.username=username
         self.partner_name=partner_name
         self.my_client=Client()
-        turtle.setup(width=_SCREEN_WIDTH, height=_SCREEN_HEIGHT)
+        turtle.setup(width=View._SCREEN_WIDTH, height=View._SCREEN_HEIGHT)
         
 
         #Make a new client object and store it in this instance.
@@ -156,12 +167,13 @@ class View:
         ###
 
         self.textbox=TextBox()
-        self.snd_btn=SendButton(self)
+        self.snd_btn=SendButton(view=self)
 
         ###
         #Call your setup_listeners() function, if you have one,
         #and any other remaining setup functions you have invented.
         ###
+        
 
     def send_msg(self):
         '''
@@ -177,6 +189,7 @@ class View:
         self.msg_queue.append(self.textbox.new_msg)
         self.textbox.clear_msg()
         self.display_msg()
+        
 
     def get_msg(self):
         return self.textbox.get_msg()
@@ -195,7 +208,7 @@ class View:
         '''
         turtle.onkeypress(self.send_btn.fun, 'Return')
         turtle.listen()
-        pass
+        
 
     def msg_received(self,msg):
         '''
@@ -212,15 +225,16 @@ class View:
         #or append (to put at the end).
         #
         #Then, call the display_msg method to update the display
+        self.msg_queue.append(msg)
+        self.display_msg()
 
     def display_msg(self):
         '''
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
         '''
-
-        
-        pass
+        self.turtle_clone.clear()
+        self.turtle_clone.write(self.msg_queue[-1],font=('Times New Roman',12,'normal'))
 
 ##############################################################
 ##############################################################
@@ -245,7 +259,7 @@ if __name__ == '__main__':
         turtle.ontimer(check,_WAIT_TIME) #Check recursively
     check()
     turtle.mainloop()
-#how to change the place where turtle starts writing what I type
+#how to start typing on the next line
 #how do i make turtle immedietely open instead of waiting for it to draw
 #how do i change the color and width of the textbox
 #image isnt working
