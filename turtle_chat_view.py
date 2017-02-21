@@ -82,7 +82,7 @@ screen.bgpic(image)
 #Make a class called SendButton, which will be a subclass of Button.
 
 class SendButton (Button):
-     def __init__(self,my_turtle=None,shape=None,pos=(0,0),view=None):
+     def __init__(self,my_turtle=None,shape=None,pos=(0,-200),view=None):
          super(SendButton, self).__init__(my_turtle=None,shape=None,pos=(0,0))
          self.view=view
 
