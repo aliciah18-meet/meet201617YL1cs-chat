@@ -6,7 +6,8 @@
 #####################################################################################
 #import the turtle module
 import turtle 
-#import the Client class from the turtle_chat_client module
+#import the Client
+from the turtle_chat_client module
 from turtle_chat_client import Client 
 #Finally, from the turtle_chat_widgets module, import two classes: Button and TextInput
 from turtle_chat_widgets import Button, TextInput
@@ -28,13 +29,12 @@ class TextBox (TextInput):
     def draw_box(self):
         turtle.ht()
         self.writer.penup()
-        self.writer.goto(-150,-200)
+        self.writer.goto(-150,-150)
         self.writer.pendown()
-        self.writer.goto(150,-200)
+        self.writer.goto(150,-150)
         self.writer.goto(150,-50)
         self.writer.goto(-150,-50)
-        self.writer.goto(-150
-                         ,-200)
+        self.writer.goto(-150,-150)
         self.writer.penup()
         self.writer.goto(-145,-74)
         self.writer.pencolor("white")
@@ -49,8 +49,6 @@ class TextBox (TextInput):
 #text=TextBox()
 
 screen = turtle.Screen()
-#turtle.screensize(577,421)
-turtle.setup( width = 421, height = 577, startx = None, starty = None) 
 image="drake2.png"
 screen.bgpic(image)
 
