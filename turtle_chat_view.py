@@ -7,17 +7,19 @@
 #import the turtle module
 import turtle 
 #import the Client
-from the turtle_chat_client module
+#from the turtle_chat_client module
 from turtle_chat_client import Client 
 #Finally, from the turtle_chat_widgets module, import two classes: Button and TextInput
 from turtle_chat_widgets import Button, TextInput
+
 
 #####################################################################################
 #####################################################################################
 
 #####################################################################################
 #                                   TextBox                                         #
-#####################################################################################
+##############
+#######################################################################
 #Make a class called TextBox, which will be a subclass of TextInput.
 #Because TextInput is an abstract class, you must implement its abstract
 #methods.  There are two:
@@ -27,6 +29,7 @@ class TextBox (TextInput):
 
     
     def draw_box(self):
+        
         turtle.ht()
         self.writer.penup()
         self.writer.goto(-150,-150)
@@ -42,7 +45,7 @@ class TextBox (TextInput):
     def write_msg(self):
         
         self.writer.clear()
-        self.writer.write(self.new_msg,font=('Times New Roman',16,'normal'))
+        self.writer.write(self.new_msg,font=('Times New Roman',17,'bold'))
     
 
 
@@ -81,12 +84,13 @@ screen.bgpic(image)
 
 class SendButton (Button):
      def __init__(self,my_turtle=None,shape=None,pos=(0,-200),view=None):
-         super(SendButton, self).__init__(my_turtle=None,shape=None,pos=(0,0))
+         super(SendButton, self).__init__(my_turtle=None,shape=None,pos=(0,-200))
          self.view=view
 
      def fun(self,x=None,y=None):
          self.view.send_msg()
          
+
     
 #Button is an abstract class with one abstract method: fun.
 #fun gets called whenever the button is clicked.  It's jobs will be to
@@ -115,11 +119,12 @@ class SendButton (Button):
 ##################################################################
 class View:
     _MSG_LOG_LENGTH=5 #Number of messages to retain in view
-    _SCREEN_WIDTH=300
-    _SCREEN_HEIGHT=600
+    _SCREEN_WIDTH=421
+    _SCREEN_HEIGHT=577
     _LINE_SPACING=round(_SCREEN_HEIGHT/2/(_MSG_LOG_LENGTH+1))
 
     def __init__(self,username='Me',partner_name='Partner'):
+        
         '''
         :param username: the name of this chat user
         :param partner_name: the name of the user you are chatting with
@@ -166,11 +171,15 @@ class View:
 
         self.textbox=TextBox()
         self.snd_btn=SendButton(view=self)
-
+        self.turtle_clone.ht()
+        self.turtle_clone.penup()
+        self.turtle_clone.pencolor("white")
+        self.turtle_clone.goto(-150,230)
         ###
         #Call your setup_listeners() function, if you have one,
         #and any other remaining setup functions you have invented.
         ###
+    
         
 
     def send_msg(self):
@@ -232,7 +241,9 @@ class View:
         You can get the messages you want from self.msg_queue
         '''
         self.turtle_clone.clear()
-        self.turtle_clone.write(self.msg_queue[-1],font=('Times New Roman',12,'normal'))
+        self.turtle_clone.write(self.msg_queue[-1],font=('Times New Roman',16,'normal'))
+        self.turtle_clone.pencolor("white")
+    
 
 ##############################################################
 ##############################################################
