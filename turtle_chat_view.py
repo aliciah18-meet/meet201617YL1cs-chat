@@ -42,8 +42,8 @@ class TextBox (TextInput):
         self.writer.goto(-145,-74)
         self.writer.pencolor("white")
         self.writer.color("white")
-    def write_msg(self):
         
+    def write_msg(self):
         self.writer.clear()
         self.writer.write(self.new_msg,font=('Times New Roman',17,'bold'))
     
@@ -89,7 +89,8 @@ class SendButton (Button):
 
      def fun(self,x=None,y=None):
          self.view.send_msg()
-         
+
+    
 
     
 #Button is an abstract class with one abstract method: fun.
@@ -270,7 +271,8 @@ if __name__ == '__main__':
     turtle.mainloop()
 #how to start typing on the next line
 #how do i make turtle immedietely open instead of waiting for it to draw
-#how do i change the color and width of the textbox
+#how do i change the color and width of the
+    textbox
 #image isnt working
 #how to resize screen without messing up the code
 
